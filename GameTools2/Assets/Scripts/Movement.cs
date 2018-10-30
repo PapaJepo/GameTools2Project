@@ -8,7 +8,7 @@ public class Movement : MonoBehaviour {
     
     public Transform BulletSpawn;//The transform position where the bullet will spawn from the gun.
     public GameObject Bullet;//This is used to store the Bullet prefab.
-    public Transform Enemy;//this si for the location of the enemy object.
+    public Transform Enemy;//This is for the location of the enemy object.
     public AudioSource FireEffect;//Sound Effect for the gun shooting.
     public Camera maincam;//This is used to store the camera so it can be moved in the level.
     public Vector3 campos1,campos2;//These positions are for where the camera will move to.
@@ -66,10 +66,5 @@ public class Movement : MonoBehaviour {
         {
             maincam.transform.position = campos2;
         }
-
-
-
     }
-   
-
 }
