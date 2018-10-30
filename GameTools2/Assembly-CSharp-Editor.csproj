@@ -61,12 +61,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\KriptoFX\Realistic Effects Pack v4\PostEffects\PC\Bloom\Editor\BloomEditor_RFX4.cs" />
-    <Compile Include="Assets\KriptoFX\Realistic Effects Pack v4\PostEffects\PC\Bloom\Editor\BloomGraphDrawer_RFX4.cs" />
-    <Compile Include="Assets\KriptoFX\Realistic Effects Pack v4\PostEffects\PC\Common\Editor\EditorGUIHelper_RFX4.cs" />
-    <Compile Include="Assets\KriptoFX\Realistic Effects Pack v4\PostEffects\PC\Common\Editor\FieldFinder_RFX4.cs" />
-    <Compile Include="Assets\KriptoFX\Realistic Effects Pack v4\PostEffects\PC\Common\Editor\MinDrawer_RFX4.cs" />
-    <Compile Include="Assets\KriptoFX\Realistic Effects Pack v4\Scripts\Editor\RFX4_CustomMaterialInspectorParticle.cs" />
+    <Compile Include="Assets\ImportedAssets\EffectExamples\TutorialInfo\Scripts\Editor\ReadmeEditor.cs" />
+    <Compile Include="Assets\ImportedAssets\Standard Assets\Editor\CrossPlatformInput\CrossPlatformInputInitialize.cs" />
+    <None Include="Assets\ImportedAssets\EffectExamples\Editor\PackageManagerAssembly\PackageImportList.txt" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>C:/Users/Hempi/Documents/College/GameTools2Project/GameTools2/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>
@@ -322,6 +319,9 @@
     <Reference Include="UnityEditor.WindowsStandalone.Extensions">
       <HintPath>C:/Program Files/Unity/Editor/Data/PlaybackEngines/windowsstandalonesupport/UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
     </Reference>
+    <Reference Include="PackageManagerAssembly">
+      <HintPath>C:/Users/Hempi/Documents/College/GameTools2Project/GameTools2/Assets/ImportedAssets/EffectExamples/Editor/PackageManagerAssembly/PackageManagerAssembly.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEditor.Advertisements">
       <HintPath>C:/Users/Hempi/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.ads@2.0.8/Editor/UnityEditor.Advertisements.dll</HintPath>
     </Reference>
@@ -369,17 +369,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
-      <Project>{3A5FFD1F-51AE-0817-0BE1-06CD11D7AF75}</Project>
-      <Name>Assembly-CSharp-firstpass</Name>
-    </ProjectReference>
     <ProjectReference Include="Assembly-CSharp.csproj">
       <Project>{3052DFA0-8A0A-00F0-F086-B2A122070CF8}</Project>
       <Name>Assembly-CSharp</Name>
-    </ProjectReference>
-    <ProjectReference Include="Assembly-CSharp-Editor-firstpass.csproj">
-      <Project>{4B636FCF-B5C0-4264-B708-81F962C470EF}</Project>
-      <Name>Assembly-CSharp-Editor-firstpass</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

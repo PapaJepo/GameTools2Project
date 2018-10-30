@@ -6,13 +6,15 @@ public class Zombie : MonoBehaviour {
 
     Animator z_anim;//Declaring a variable for the animator.
     
-    public float speed;//Declaring float to be used for the enemies speed.
+    private float speed;//Declaring float to be used for the enemies speed.
     public float health = 10f;//Setting the Health value for the enemy.
     public float damage = 10f;//Setting how much damage the enemy can deal.
 
     public Transform player;//This is taking in a public transform of the player so that the enemy know where the player is.
-    public GameObject Player;//This is taking in the player object so taht it can access its components such as health and its animator
+    public GameObject Player;//This is taking in the player object so taht it can access its components such as health and its animator.
+    public GameObject Blood;//used to store the blood particle effect.
     public AudioSource Bite,Death;//This is adding in a bite and death sound effect to the zombie.
+    public Transform BloodEffect;//Used to spawn in blood effect.
     
     void Start ()
     {
@@ -50,13 +52,14 @@ public class Zombie : MonoBehaviour {
 
         if (health <= 0)//If the player shoots the zombie.
         {
-            Death.Play();//Play the death sound.
+            Instantiate(Blood, BloodEffect);//Spawns in the blood effect.
             bool walk = false;
             z_anim.SetBool("PlayerClose", walk);//Stop any wlaking animation.
             bool attack = false;
             z_anim.SetBool("Attack", attack);//Stop any attack animation.
             bool die = true;
             z_anim.SetBool("Die", die);//Play the death animation.
+            
             Destroy(gameObject, 3f);//After 3 seconds destory the gameobject the zombie script is attached to.
         }
     }
@@ -67,5 +70,10 @@ public class Zombie : MonoBehaviour {
         GameObject.Find("player").GetComponent<Movement>().health -= damage;//This line finds the player object and the movement script attached to it and deals damage to the health value in movement.
         Animator c_anim = Player.GetComponent<Animator>();//This is assigning the animator of the player object to a variable.
         c_anim.SetTrigger("Damage");//This is telling the players animation controller to play the damage animation when he is it.
+    }
+    public void DeathSound()
+    {
+        Death.Play();//Play the death sound.
+
     }
 }

@@ -9,6 +9,8 @@ public class Footprint : MonoBehaviour {
     private Transform f_rightTransform;// Two transforms for the right and left foot of the player model.
     private Transform f_leftTransform;
 
+    public AudioSource Footstep;//Footstep sound effect.
+
     void Start()
     {
         f_animator = GetComponent<Animator>();// This line gets the animator attached to the gameobject this script is on.
@@ -20,11 +22,13 @@ public class Footprint : MonoBehaviour {
     //These two functions are calling the events I made during the walk animation when the right and left foot touched the ground.
     public void MakeRFootprint()
     {
+        Footstep.Play();//Plays the footstep sound effect.
         Instantiate(f_footprint, f_rightTransform.position, f_rightTransform.rotation);//This is spawning in the particle effect assigned to f_footprint at the foots position and rotation.
     }
 
     public void MakeLFootprint()
-    {            
+    {
+        Footstep.Play();
         Instantiate(f_footprint, f_leftTransform.position, f_leftTransform.rotation);      
     }
 
