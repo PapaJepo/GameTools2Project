@@ -9,17 +9,20 @@ public class Movement : MonoBehaviour {
     public Transform BulletSpawn;
     public GameObject Bullet;
     public Transform Enemy;
-
-    private float BulletSpeed = 500;
+    public AudioSource FireEffect;
+    public Camera maincam;
+    public Vector3 campos1,campos2;
+    
+    private float BulletSpeed = 2000;
     public float health = 30f;
+
+    
 
     Collider BulletCol;
 
     void Start ()
     {
         c_anim = GetComponent<Animator>();
-        
-
     }
 	
 	
@@ -34,7 +37,8 @@ public class Movement : MonoBehaviour {
         bool shoot = Input.GetMouseButtonDown(0);
         c_anim.SetBool("shoot", shoot);
         
-        
+
+
 
         if (health <= 0)
         {
@@ -52,6 +56,7 @@ public class Movement : MonoBehaviour {
         Rigidbody BulletPhys;
         //Destroy(Shoot, 3f);
         Shoot = Instantiate(Bullet, BulletSpawn.transform.position, BulletSpawn.transform.rotation) as GameObject;
+        FireEffect.Play();
 
 
         BulletPhys = Shoot.GetComponent<Rigidbody>();
@@ -61,5 +66,20 @@ public class Movement : MonoBehaviour {
        
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == "Cam1")
+        {
+            maincam.transform.position = campos1;
+        }
+        if (other.tag == "Cam2")
+        {
+            maincam.transform.position = campos2;
+        }
+
+
+
+    }
    
+
 }

@@ -10,6 +10,9 @@ public class Zombie : MonoBehaviour {
     public float health = 10f;
     public float damage = 10f;
     public GameObject Player;
+    public AudioSource Bite,Death;
+    
+
 
 
     void Start ()
@@ -21,7 +24,7 @@ public class Zombie : MonoBehaviour {
 	
 	void Update ()
     {
-        TakeDamage();
+        //TakeDamage();
         Debug.Log(health);
         float step = speed * Time.deltaTime;
         float dist = Vector3.Distance(player.position, transform.position);
@@ -53,7 +56,7 @@ public class Zombie : MonoBehaviour {
 
         if (health <= 0)
         {
-             
+            Death.Play();
             bool walk = false;
             z_anim.SetBool("PlayerClose", walk);
             bool attack = false;
@@ -64,24 +67,25 @@ public class Zombie : MonoBehaviour {
         }
     }
 
-    public void TakeDamage()
+    /*public void TakeDamage()
     {
         if(health<=0)
         {
+            
             bool walk = false;
             z_anim.SetBool("PlayerClose", walk);
             bool attack = false;
             z_anim.SetBool("Attack", attack);
             bool die = true;
+            
             z_anim.SetBool("Die", die);
         }
 
-    }
+    }*/
     public void AttackHit()
     {
+        Bite.Play();
         GameObject.Find("player").GetComponent<Movement>().health -= damage;
-        
-
         Animator c_anim = Player.GetComponent<Animator>();
         c_anim.SetTrigger("Damage");
         

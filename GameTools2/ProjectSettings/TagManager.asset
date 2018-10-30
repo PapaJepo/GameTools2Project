@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Enemy
+  - Cam1
+  - Cam2
+  - Cam3
   layers:
   - Default
   - TransparentFX
