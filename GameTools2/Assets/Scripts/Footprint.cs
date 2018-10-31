@@ -29,7 +29,7 @@ public class Footprint : MonoBehaviour {
     public void MakeLFootprint()
     {
         Footstep.Play();
-        Instantiate(f_footprint, f_leftTransform.position, f_leftTransform.rotation);      
+        Instantiate(f_footprint, f_leftTransform.position, f_leftTransform.rotation);
     }
 
 }

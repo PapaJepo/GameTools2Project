@@ -8,13 +8,13 @@ public class Laser : MonoBehaviour {
 
     private void Start()
     {
-        laser = GetComponent<LineRenderer>();
-        laser.enabled = !laser.enabled;
+        laser = GetComponent<LineRenderer>();//Assigning the variable laser to the Line Renderer component of the gameobject.
+        laser.enabled = !laser.enabled;//Disabling the laser at start.
     }
 
     void Update ()
     {
-        if (Input.GetMouseButton(1))
+        if (Input.GetMouseButton(1))//When right click is pressed it enables/disables the laser.
         {
             laser.enabled = !laser.enabled;
         }

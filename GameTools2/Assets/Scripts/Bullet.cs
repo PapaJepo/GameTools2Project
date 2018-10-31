@@ -13,6 +13,11 @@ public class Bullet : MonoBehaviour {
             GameObject.Find("zombie").GetComponent<Zombie>().health -= damage;
             Destroy(gameObject); //This destroys the gameobject the bullet script is attached to.
         }
+        if (collider.gameObject.name == "zombie(Clone)")//If the object has the name zombie the script finds the zombies script and deals damage to its health.
+        {
+            GameObject.Find("zombie(Clone)").GetComponent<Zombie>().health -= damage;
+            Destroy(gameObject); //This destroys the gameobject the bullet script is attached to.
+        }
 
     }
 }

@@ -6,31 +6,33 @@ public class Zombie : MonoBehaviour {
 
     Animator z_anim;//Declaring a variable for the animator.
     
-    private float speed;//Declaring float to be used for the enemies speed.
+    public float speed;//Declaring float to be used for the enemies speed.
     public float health = 10f;//Setting the Health value for the enemy.
     public float damage = 10f;//Setting how much damage the enemy can deal.
 
     public Transform player;//This is taking in a public transform of the player so that the enemy know where the player is.
     public GameObject Player;//This is taking in the player object so taht it can access its components such as health and its animator.
     public GameObject Blood;//used to store the blood particle effect.
-    public AudioSource Bite,Death;//This is adding in a bite and death sound effect to the zombie.
+    public AudioSource Bite,Death,Moan;//This is adding in a bite and death sound effect to the zombie.
     public Transform BloodEffect;//Used to spawn in blood effect.
     
     void Start ()
     {
         z_anim = GetComponent<Animator>();//Assigning the animator variable to the objects animator component.
-	}
+        
+        
+    }
 	
 	
 	void Update ()
     {
         Debug.Log(health);//This is for checking the Health of teh enemy in the console when testing.
-
         float step = speed * Time.deltaTime;//This is so the speed is affected by the seconds in game not the frames.
         float dist = Vector3.Distance(player.position, transform.position);//Here I'm assigning a float variable to be asigned the value of the distance between the players position and the obejct this zmobie script is attached to,
-
-        if(dist < 10 && dist >2)//If the player gets close enough to the enemy this if statement wll trigger.
+       
+        if(dist < 60 && dist >2)//If the player gets close enough to the enemy this if statement wll trigger.
         {
+            
             transform.LookAt(player);//The zombie will look towards the player.
             transform.position = Vector3.MoveTowards(transform.position, player.position, step);//This is moving the zombie towards the position of the player.
             bool walk = true;
@@ -73,7 +75,7 @@ public class Zombie : MonoBehaviour {
     }
     public void DeathSound()
     {
+        
         Death.Play();//Play the death sound.
-
     }
 }

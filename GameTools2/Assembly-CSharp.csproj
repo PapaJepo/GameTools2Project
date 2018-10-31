@@ -118,6 +118,7 @@
     <Compile Include="Assets\Scripts\Footprint.cs" />
     <Compile Include="Assets\Scripts\Laser.cs" />
     <Compile Include="Assets\Scripts\Movement.cs" />
+    <Compile Include="Assets\Scripts\Spawn.cs" />
     <Compile Include="Assets\Scripts\Zombie.cs" />
     <None Include="Assets\ImportedAssets\EffectExamples\Shared\Shaders\SurfaceShader_VC.shader" />
     <None Include="Assets\ImportedAssets\Standard Assets\ParticleSystems\Shaders\PriorityParticleAlpha.shader" />
