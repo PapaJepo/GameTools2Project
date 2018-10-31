@@ -73,9 +73,9 @@ public class Zombie : MonoBehaviour {
         Animator c_anim = Player.GetComponent<Animator>();//This is assigning the animator of the player object to a variable.
         c_anim.SetTrigger("Damage");//This is telling the players animation controller to play the damage animation when he is it.
     }
+
     public void DeathSound()
     {
-        
         Death.Play();//Play the death sound.
     }
 }
