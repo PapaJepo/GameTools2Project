@@ -13,12 +13,13 @@ public class Movement : MonoBehaviour {
     public Camera maincam;//This is used to store the camera so it can be moved in the level.
     public Vector3 campos1,campos2;//These positions are for where the camera will move to.
     
-    private float BulletSpeed = 2000;//This float affects the speed of the bullet.
+    
+    private float BulletSpeed = 10000;//This float affects the speed of the bullet.
     public float health = 30f;//This si the health value for the player and is affected by the zombie script.
 
     void Start ()
     {
-        c_anim = GetComponent<Animator>();//Assigning the animator component on the game object to the animator varible.
+        c_anim = GetComponent<Animator>();//Assigning the animator component on the game object to the animator varible. 
     }
 	
 	
@@ -30,13 +31,23 @@ public class Movement : MonoBehaviour {
         c_anim.SetFloat("strafe", strafe);//This affects the float parameter named strafe in the animator controller.
         bool crouch = Input.GetKey(KeyCode.C);//This is so that the C key allows the player to crouch and play its respected animation.
         c_anim.SetBool("crouched", crouch);//This affects the bool parameter named crouched in the animator controller.
-        bool shoot = Input.GetMouseButtonDown(0);//When the player presses left click the bool shoot is set to true.
-        c_anim.SetBool("shoot", shoot);//This affects the bool parameter named shoot in the animator controller.
+        bool aim = Input.GetMouseButton(1);//When the player presses left click the bool shoot is set to true.
+        c_anim.SetBool("aiming", aim);
+
+
+        if (Input.GetMouseButtonDown(0) && c_anim.GetBool("aiming") == true)//When the player presses left click the bool shoot is set to true.        
+        {
+            Debug.Log("shooting");
+            c_anim.SetBool("shoot", true); //This affects the bool parameter named shoot in the animator controller.
+        }
+        else
+        {
+            c_anim.SetBool("shoot", false); 
+        }
         
 
 
-
-        if (health <= 0)//If the palyer takes enough damage to reduce their health to 0 it plays the die animation adn destroys the gameobject.
+        if (health <= 0)//If the player takes enough damage to reduce their health to 0 it plays the die animation adn destroys the gameobject.
         {
             bool die = true;
             c_anim.SetBool("die", die);
