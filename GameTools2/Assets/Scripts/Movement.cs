@@ -19,7 +19,6 @@ public class Movement : MonoBehaviour {
         c_anim = GetComponent<Animator>();//Assigning the animator component on the game object to the animator varible. 
     }
 	
-	
 	void Update ()
     {
         float move = Input.GetAxis("Vertical");//This is so that the W and S keys move the character and play its respected animations.
@@ -41,9 +40,7 @@ public class Movement : MonoBehaviour {
         {
             c_anim.SetBool("shoot", false); 
         }
-        
-
-
+  
         if (health <= 0)//If the player takes enough damage to reduce their health to 0 it plays the die animation adn destroys the gameobject.
         {
             bool die = true;

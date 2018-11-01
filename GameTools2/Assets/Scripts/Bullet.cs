@@ -18,6 +18,5 @@ public class Bullet : MonoBehaviour {
             GameObject.Find("zombie(Clone)").GetComponent<Zombie>().health -= damage;
             Destroy(gameObject); //This destroys the gameobject the bullet script is attached to.
         }
-
     }
 }

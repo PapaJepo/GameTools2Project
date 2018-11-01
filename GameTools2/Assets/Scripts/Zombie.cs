@@ -18,9 +18,7 @@ public class Zombie : MonoBehaviour {
     
     void Start ()
     {
-        z_anim = GetComponent<Animator>();//Assigning the animator variable to the objects animator component.
-        
-        
+        z_anim = GetComponent<Animator>();//Assigning the animator variable to the objects animator component. 
     }
 	
 	
@@ -32,7 +30,6 @@ public class Zombie : MonoBehaviour {
        
         if(dist < 60 && dist >2)//If the player gets close enough to the enemy this if statement wll trigger.
         {
-            
             transform.LookAt(player);//The zombie will look towards the player.
             transform.position = Vector3.MoveTowards(transform.position, player.position, step);//This is moving the zombie towards the position of the player.
             bool walk = true;
@@ -61,7 +58,6 @@ public class Zombie : MonoBehaviour {
             z_anim.SetBool("Attack", attack);//Stop any attack animation.
             bool die = true;
             z_anim.SetBool("Die", die);//Play the death animation.
-            
             Destroy(gameObject, 3f);//After 3 seconds destory the gameobject the zombie script is attached to.
         }
     }
