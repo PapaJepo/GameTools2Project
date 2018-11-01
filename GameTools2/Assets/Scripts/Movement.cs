@@ -10,10 +10,7 @@ public class Movement : MonoBehaviour {
     public GameObject Bullet;//This is used to store the Bullet prefab.
     public Transform Enemy;//This is for the location of the enemy object.
     public AudioSource FireEffect;//Sound Effect for the gun shooting.
-    public Camera maincam;//This is used to store the camera so it can be moved in the level.
-    public Vector3 campos1,campos2;//These positions are for where the camera will move to.
-    
-    
+     
     private float BulletSpeed = 10000;//This float affects the speed of the bullet.
     public float health = 30f;//This si the health value for the player and is affected by the zombie script.
 
@@ -65,17 +62,5 @@ public class Movement : MonoBehaviour {
         BulletPhys = Shoot.GetComponent<Rigidbody>();//This line is assinging the rigidbody component to the variable BulletPhys.
         BulletPhys.AddForce(transform.forward * BulletSpeed);//This is shooting the bullet forward at the predefined speed.
         Destroy(Shoot, 1f);//After 1 second the bullet is destroyed.
-    }
-
-    private void OnTriggerEnter(Collider other)//If the player enters a trigger with either the Cam1 or Cam2 tag it will change to position of the camera.
-    {
-        if(other.tag == "Cam1")
-        {
-            maincam.transform.position = campos1;
-        }
-        if (other.tag == "Cam2")
-        {
-            maincam.transform.position = campos2;
-        }
     }
 }
