@@ -10,7 +10,10 @@ public class Zombie : MonoBehaviour {
     private int z_CurrentWaypoint;
 
     Animator z_anim;//Declaring a variable for the animator.
-    
+    public Shader Passive;
+    public Shader Active;
+    Renderer renderchange;
+         
     public float speed;//Declaring float to be used for the enemies speed.
     public float health = 10f;//Setting the Health value for the enemy.
     public float damage = 10f;//Setting how much damage the enemy can deal.
@@ -27,6 +30,7 @@ public class Zombie : MonoBehaviour {
     
     void Start ()
     {
+        renderchange = GetComponent<Renderer>();
         z_NPCState = NPCState.PATROL;
         z_navMeshAgent = GetComponent<NavMeshAgent>();
         z_anim = GetComponent<Animator>();//Assigning the animator variable to the objects animator component. 
@@ -120,11 +124,13 @@ public class Zombie : MonoBehaviour {
 
     void Chase()
     {
+        renderchange.material.shader = Active;
         z_navMeshAgent.SetDestination(Player.transform.position);
     }
 
     void Patrol()
     {
+        renderchange.material.shader = Passive;
         UpdateWaypoints();
         z_navMeshAgent.SetDestination(z_Waypoints[z_CurrentWaypoint].position);
     }
