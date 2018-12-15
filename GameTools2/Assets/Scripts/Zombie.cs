@@ -8,6 +8,7 @@ public class Zombie : MonoBehaviour {
     private enum NPCState { CHASE, PATROL};
     private NPCState z_NPCState;
     private int z_CurrentWaypoint;
+
     Animator z_anim;//Declaring a variable for the animator.
     
     public float speed;//Declaring float to be used for the enemies speed.
@@ -20,9 +21,10 @@ public class Zombie : MonoBehaviour {
     public AudioSource Bite,Death,Moan;//This is adding in a bite and death sound effect to the zombie.
     public Transform BloodEffect;//Used to spawn in blood effect.
     public Transform[] z_Waypoints;
+    public SphereCollider PlayerDetect;
 
     private NavMeshAgent z_navMeshAgent;
-    
+    [SerializeField] bool z_PlayerNear;
     
     void Start ()
     {
@@ -36,30 +38,31 @@ public class Zombie : MonoBehaviour {
 	
 	void Update ()
     {
+        CheckPlayer();
        // Debug.Log(health);//This is for checking the Health of the enemy in the console when testing.
         float step = speed * Time.deltaTime;//This is so the speed is affected by the seconds in game not the frames.
         float dist = Vector3.Distance(player.position, transform.position);//Here I'm assigning a float variable to be asigned the value of the distance between the players position and the obejct this zmobie script is attached to,
        
-       /* if(dist < 60 && dist >2)//If the player gets close enough to the enemy this if statement wll trigger.
-        {
-            transform.LookAt(player);//The zombie will look towards the player.
-            transform.position = Vector3.MoveTowards(transform.position, player.position, step);//This is moving the zombie towards the position of the player.
-            bool walk = true;
-            z_anim.SetBool("PlayerClose", walk);//This is telling the animator to start the zombies wlak animation.
+        //if(dist < 60 && dist >2)//If the player gets close enough to the enemy this if statement wll trigger.
+        //{
+           // transform.LookAt(player);//The zombie will look towards the player.
+           // transform.position = Vector3.MoveTowards(transform.position, player.position, step);//This is moving the zombie towards the position of the player.
+            //bool walk = true;
+           // z_anim.SetBool("PlayerClose", walk);//This is telling the animator to start the zombies wlak animation.
 
-            if (dist<3)//Once the zombie gets close to the player it will run this if statement which plays an attack animation and stops the zombie from moving.
+            if (dist<3&&z_PlayerNear==true)//Once the zombie gets close to the player it will run this if statement which plays an attack animation and stops the zombie from moving.
             {
-                walk = false;
-                z_anim.SetBool("PlayerClose", walk);
+                //walk = false;
+                z_anim.SetFloat("forward", 0);
                 bool attack = true;
                 z_anim.SetBool("Attack", attack);
             }   
-        }
-        else//If the player is not close to the zombie he stands idle.
-        {
-           bool walk = false;
-           z_anim.SetBool("PlayerClose", walk);
-        }*/
+       // }
+       // else//If the player is not close to the zombie he stands idle.
+       // {
+           //bool walk = false;
+          // z_anim.SetBool("PlayerClose", walk);
+       // }*/
 
         switch(z_NPCState)
         {
@@ -75,6 +78,7 @@ public class Zombie : MonoBehaviour {
 
         if (health <= 0)//If the player shoots the zombie.
         {
+            z_anim.SetFloat("forward", 0);
             Instantiate(Blood, BloodEffect);//Spawns in the blood effect.
             bool walk = false;
             z_anim.SetBool("PlayerClose", walk);//Stop any wlaking animation.
@@ -97,6 +101,21 @@ public class Zombie : MonoBehaviour {
     public void DeathSound()
     {
         Death.Play();//Play the death sound.
+    }
+
+    void CheckPlayer()
+    {
+        if (z_NPCState == NPCState.PATROL && z_PlayerNear == true)
+        {
+            z_NPCState = NPCState.CHASE;
+            AnimationFloat();
+            return;
+        }
+        if(z_NPCState == NPCState.CHASE && z_PlayerNear == false)
+        {
+            z_NPCState = NPCState.PATROL;
+            AnimationFloat();
+        }
     }
 
     void Chase()
@@ -127,6 +146,22 @@ public class Zombie : MonoBehaviour {
         else
         {
             z_anim.SetFloat("forward", 1);
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if(other.tag == "Player")
+        {
+            z_PlayerNear = true;
+        }
+
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Player")
+        {
+            z_PlayerNear = false;
         }
     }
 }

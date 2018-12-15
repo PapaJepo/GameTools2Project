@@ -355,7 +355,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4209119051769016, guid: 4e13334eba66b2c44ae94e1800560746, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -36.5
       objectReference: {fileID: 0}
     - target: {fileID: 4209119051769016, guid: 4e13334eba66b2c44ae94e1800560746, type: 2}
       propertyPath: m_LocalRotation.x
@@ -781,6 +781,18 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4209119051769016, guid: 4e13334eba66b2c44ae94e1800560746,
     type: 2}
   m_PrefabInternal: {fileID: 347997876}
+--- !u!135 &515784484
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 515784476}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 526.66125
+  m_Center: {x: 58.09302, y: -94.61908, z: -4.405833}
 --- !u!1 &518573692
 GameObject:
   m_ObjectHideFlags: 0
@@ -905,7 +917,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 559761291}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4519897f7d19e174081a0bff322a753f, type: 3}
   m_Name: 
@@ -1482,7 +1494,7 @@ GameObject:
   m_Layer: 0
   m_Name: Spawn
   m_TagString: Untagged
-  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -2256,7 +2268,7 @@ GameObject:
   m_Layer: 0
   m_Name: Spawn1
   m_TagString: Untagged
-  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -2654,7 +2666,7 @@ GameObject:
   m_Layer: 0
   m_Name: Spawn2
   m_TagString: Untagged
-  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
