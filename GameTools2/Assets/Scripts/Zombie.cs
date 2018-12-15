@@ -21,8 +21,7 @@ public class Zombie : MonoBehaviour {
     public AudioSource Bite,Death,Moan;//This is adding in a bite and death sound effect to the zombie.
     public Transform BloodEffect;//Used to spawn in blood effect.
     public Transform[] z_Waypoints;
-    public SphereCollider PlayerDetect;
-
+    
     private NavMeshAgent z_navMeshAgent;
     [SerializeField] bool z_PlayerNear;
     
@@ -78,10 +77,11 @@ public class Zombie : MonoBehaviour {
 
         if (health <= 0)//If the player shoots the zombie.
         {
+            
             z_anim.SetFloat("forward", 0);
             Instantiate(Blood, BloodEffect);//Spawns in the blood effect.
             bool walk = false;
-            z_anim.SetBool("PlayerClose", walk);//Stop any wlaking animation.
+            z_anim.SetBool("PlayerClose", walk);//Stop any walking animation.
             bool attack = false;
             z_anim.SetBool("Attack", attack);//Stop any attack animation.
             bool die = true;

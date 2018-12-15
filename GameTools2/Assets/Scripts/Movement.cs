@@ -28,13 +28,15 @@ public class Movement : MonoBehaviour {
         c_anim.SetFloat("strafe", strafe);//This affects the float parameter named strafe in the animator controller.
         bool crouch = Input.GetKey(KeyCode.C);//This is so that the C key allows the player to crouch and play its respected animation.
         c_anim.SetBool("crouched", crouch);//This affects the bool parameter named crouched in the animator controller.
-        bool aim = Input.GetMouseButton(1);//When the player presses left click the bool shoot is set to true.
-        c_anim.SetBool("aiming", aim);
         bool run = Input.GetKey(KeyCode.LeftShift);
         c_anim.SetBool("running", run);
         bool jump = Input.GetKey(KeyCode.Space);
         c_anim.SetBool("jumping", jump);
-        
+        if (run == false && jump == false)
+        {
+            bool aim = Input.GetMouseButton(1);//When the player presses left click the bool shoot is set to true.
+            c_anim.SetBool("aiming", aim);
+        }
 
         if (Input.GetMouseButtonDown(0) && c_anim.GetBool("aiming") == true && run == false)//When the player presses left click the bool shoot is set to true.        
         {
