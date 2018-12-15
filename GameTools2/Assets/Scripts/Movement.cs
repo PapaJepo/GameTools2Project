@@ -21,6 +21,7 @@ public class Movement : MonoBehaviour {
 	
 	void Update ()
     {
+        
         float move = Input.GetAxis("Vertical");//This is so that the W and S keys move the character and play its respected animations.
         c_anim.SetFloat("forward", move);//This affects the float parameter named forward in the animator controller.
         float strafe = Input.GetAxis("Horizontal");//This is so that the A and D keys turn the character and play its respected animations.
@@ -29,9 +30,11 @@ public class Movement : MonoBehaviour {
         c_anim.SetBool("crouched", crouch);//This affects the bool parameter named crouched in the animator controller.
         bool aim = Input.GetMouseButton(1);//When the player presses left click the bool shoot is set to true.
         c_anim.SetBool("aiming", aim);
+        bool run = Input.GetKey(KeyCode.LeftShift);
+        c_anim.SetBool("running", run);
+        
 
-
-        if (Input.GetMouseButtonDown(0) && c_anim.GetBool("aiming") == true)//When the player presses left click the bool shoot is set to true.        
+        if (Input.GetMouseButtonDown(0) && c_anim.GetBool("aiming") == true && run == false)//When the player presses left click the bool shoot is set to true.        
         {
             Debug.Log("shooting");
             c_anim.SetBool("shoot", true); //This affects the bool parameter named shoot in the animator controller.
