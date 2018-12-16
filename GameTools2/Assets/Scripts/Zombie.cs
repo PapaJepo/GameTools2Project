@@ -5,13 +5,14 @@ using UnityEngine.AI;
 
 public class Zombie : MonoBehaviour {
 
-    private enum NPCState { CHASE, PATROL};
+    private enum NPCState { CHASE, PATROL, DIE};
     private NPCState z_NPCState;
     private int z_CurrentWaypoint;
 
     Animator z_anim;//Declaring a variable for the animator.
     public Shader Passive;
     public Shader Active;
+    public Shader Dissolve;
     Renderer renderchange;
          
     public float speed;//Declaring float to be used for the enemies speed.
@@ -20,9 +21,10 @@ public class Zombie : MonoBehaviour {
 
     public Transform player;//This is taking in a public transform of the player so that the enemy know where the player is.
     public GameObject Player;//This is taking in the player object so taht it can access its components such as health and its animator.
-    public GameObject Blood;//used to store the blood particle effect.
+    public GameObject zombie;
+    //public GameObject Blood;//used to store the blood particle effect.
     public AudioSource Bite,Death,Moan;//This is adding in a bite and death sound effect to the zombie.
-    public Transform BloodEffect;//Used to spawn in blood effect.
+   // public Transform BloodEffect;//Used to spawn in blood effect.
     public Transform[] z_Waypoints;
     
     private NavMeshAgent z_navMeshAgent;
@@ -75,15 +77,18 @@ public class Zombie : MonoBehaviour {
             case NPCState.PATROL:
                 Patrol();
                 break;
+            case NPCState.DIE:
+                break;
             default:
                 break;
         }
 
         if (health <= 0)//If the player shoots the zombie.
         {
-            
+            Die();
+            //renderchange.material.shader = Dissolve;
             z_anim.SetFloat("forward", 0);
-            Instantiate(Blood, BloodEffect);//Spawns in the blood effect.
+           // Instantiate(Blood, BloodEffect);//Spawns in the blood effect.
             bool walk = false;
             z_anim.SetBool("PlayerClose", walk);//Stop any walking animation.
             bool attack = false;
@@ -120,6 +125,11 @@ public class Zombie : MonoBehaviour {
             z_NPCState = NPCState.PATROL;
             AnimationFloat();
         }
+        if(health<=0)
+        {
+            z_NPCState = NPCState.DIE;
+            AnimationFloat();
+        }
     }
 
     void Chase()
@@ -133,6 +143,10 @@ public class Zombie : MonoBehaviour {
         renderchange.material.shader = Passive;
         UpdateWaypoints();
         z_navMeshAgent.SetDestination(z_Waypoints[z_CurrentWaypoint].position);
+    }
+    void Die()
+    {
+        z_navMeshAgent.SetDestination(zombie.transform.position);
     }
 
     void UpdateWaypoints()
