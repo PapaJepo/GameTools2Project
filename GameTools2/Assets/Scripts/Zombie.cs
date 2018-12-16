@@ -5,14 +5,15 @@ using UnityEngine.AI;
 
 public class Zombie : MonoBehaviour {
 
-    private enum NPCState { CHASE, PATROL, DIE};
+    private enum NPCState { CHASE, PATROL, DIE, DANCE};
     private NPCState z_NPCState;
     private int z_CurrentWaypoint;
-
+    private bool dance;
     Animator z_anim;//Declaring a variable for the animator.
     public Shader Passive;
     public Shader Active;
     public Shader Dissolve;
+    public Shader DanceShader;
     Renderer renderchange;
          
     public float speed;//Declaring float to be used for the enemies speed.
@@ -61,13 +62,35 @@ public class Zombie : MonoBehaviour {
                 z_anim.SetFloat("forward", 0);
                 bool attack = true;
                 z_anim.SetBool("Attack", attack);
-            }   
-       // }
-       // else//If the player is not close to the zombie he stands idle.
-       // {
-           //bool walk = false;
-          // z_anim.SetBool("PlayerClose", walk);
-       // }*/
+            }
+        // }
+        // else//If the player is not close to the zombie he stands idle.
+        // {
+        //bool walk = false;
+        // z_anim.SetBool("PlayerClose", walk);
+        // }*/
+
+        bool dance = Input.GetKeyDown(KeyCode.RightShift);
+        if(dance == true)
+        {
+            z_NPCState = NPCState.DANCE;
+            AnimationFloat();
+            //renderchange.material.shader = DanceShader;
+            // z_anim.SetFloat("forward", 0);
+            Stop();
+            //z_navMeshAgent.SetDestination(zombie.transform.position);
+           
+            z_anim.SetBool("dance", dance);
+            dance = false;
+            
+            //z_anim.SetFloat("forward", 1);
+
+        }
+        else
+        {
+            z_anim.SetFloat("forward", 1);
+        }
+
 
         switch(z_NPCState)
         {
@@ -79,13 +102,16 @@ public class Zombie : MonoBehaviour {
                 break;
             case NPCState.DIE:
                 break;
+            case NPCState.DANCE:
+                renderchange.material.shader = DanceShader;
+                break;
             default:
                 break;
         }
 
         if (health <= 0)//If the player shoots the zombie.
         {
-            Die();
+            Stop();
             //renderchange.material.shader = Dissolve;
             z_anim.SetFloat("forward", 0);
            // Instantiate(Blood, BloodEffect);//Spawns in the blood effect.
@@ -130,6 +156,11 @@ public class Zombie : MonoBehaviour {
             z_NPCState = NPCState.DIE;
             AnimationFloat();
         }
+       /* if(dance == true)
+        {
+            z_NPCState = NPCState.DANCE;
+            AnimationFloat();
+        }*/
     }
 
     void Chase()
@@ -144,10 +175,11 @@ public class Zombie : MonoBehaviour {
         UpdateWaypoints();
         z_navMeshAgent.SetDestination(z_Waypoints[z_CurrentWaypoint].position);
     }
-    void Die()
+    void Stop()
     {
         z_navMeshAgent.SetDestination(zombie.transform.position);
     }
+    
 
     void UpdateWaypoints()
     {
@@ -163,6 +195,7 @@ public class Zombie : MonoBehaviour {
         {
             z_anim.SetFloat("forward", 2);
         }
+       
         else
         {
             z_anim.SetFloat("forward", 1);

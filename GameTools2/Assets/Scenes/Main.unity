@@ -536,6 +536,11 @@ Prefab:
       propertyPath: zombie
       value: 
       objectReference: {fileID: 515784476}
+    - target: {fileID: 114191583487262516, guid: 4e13334eba66b2c44ae94e1800560746,
+        type: 2}
+      propertyPath: DanceShader
+      value: 
+      objectReference: {fileID: 4800000, guid: 741efaa511023ff48afc4871065f3c85, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4e13334eba66b2c44ae94e1800560746, type: 2}
   m_IsPrefabAsset: 0
