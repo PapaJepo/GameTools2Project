@@ -112,7 +112,7 @@ public class Zombie : MonoBehaviour {
         if (health <= 0)//If the player shoots the zombie.
         {
             Stop();
-            //renderchange.material.shader = Dissolve;
+            renderchange.material.shader = Dissolve;
             z_anim.SetFloat("forward", 0);
            // Instantiate(Blood, BloodEffect);//Spawns in the blood effect.
             bool walk = false;
