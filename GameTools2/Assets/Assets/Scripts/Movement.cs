@@ -32,6 +32,8 @@ public class Movement : MonoBehaviour {
         c_anim.SetBool("running", run);
         bool jump = Input.GetKey(KeyCode.Space);
         c_anim.SetBool("jumping", jump);
+        bool roll = Input.GetKey(KeyCode.Q);
+        c_anim.SetBool("roll", roll);
         if (run == false && jump == false)
         {
             bool aim = Input.GetMouseButton(1);//When the player presses left click the bool shoot is set to true.
