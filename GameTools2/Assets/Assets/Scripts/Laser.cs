@@ -16,7 +16,11 @@ public class Laser : MonoBehaviour {
     {
         if (Input.GetMouseButton(1))//When right click is pressed it enables/disables the laser.
         {
-            laser.enabled = !laser.enabled;
+            laser.enabled = true;
+        }
+        else
+        {
+            laser.enabled = false;
         }
     }
 }
